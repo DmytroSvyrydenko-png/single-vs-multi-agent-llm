@@ -1,0 +1,11 @@
+{
+  "scenario": "verification",
+  "variant": "intel_litigation",
+  "architecture": "multi_agent",
+  "run": 5,
+  "answer": "{\"litigation_charges_2025\":-121.000,\"litigation_charges_2023\":-329.000}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "agent_error": null,
+  "eval_error": null
+}

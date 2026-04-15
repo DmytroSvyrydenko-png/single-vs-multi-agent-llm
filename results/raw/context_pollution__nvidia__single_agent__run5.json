@@ -1,0 +1,11 @@
+{
+  "scenario": "context_pollution",
+  "variant": "nvidia",
+  "architecture": "single_agent",
+  "run": 5,
+  "answer": "{\"h20_inventory_charge_billions\":4.500,\"lease_guarantee_exposure_billions\":3.500}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "agent_error": null,
+  "eval_error": null
+}

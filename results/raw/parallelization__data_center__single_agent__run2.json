@@ -1,0 +1,11 @@
+{
+  "scenario": "parallelization",
+  "variant": "data_center",
+  "architecture": "single_agent",
+  "run": 2,
+  "answer": "{\"AMD_Data_Center\":16635.000,\"Intel_DCAI\":16919.000,\"Nvidia_Compute_Networking\":193479.000}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "agent_error": null,
+  "eval_error": null
+}

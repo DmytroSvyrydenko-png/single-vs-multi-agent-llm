@@ -1,0 +1,9 @@
+openai-agents>=0.0.17
+openai>=1.82.0
+opik>=1.8.0
+edgartools>=3.0.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+pandas>=2.2.0
+jupyter>=1.1.0
+ipykernel>=6.29.0

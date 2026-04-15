@@ -1,0 +1,11 @@
+{
+  "scenario": "context_pollution",
+  "variant": "apple",
+  "architecture": "multi_agent",
+  "run": 5,
+  "answer": "{\"unrecognized_rsu_expense_billions\":21.800,\"weighted_avg_period_years\":2.500}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "agent_error": null,
+  "eval_error": null
+}
