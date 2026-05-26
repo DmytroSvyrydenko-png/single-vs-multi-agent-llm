@@ -1,0 +1,12 @@
+{
+  "scenario": "parallelization",
+  "variant": "margin_change_5_companies",
+  "architecture": "multi_agent",
+  "run": 2,
+  "answer": "{\"company_count\":5.000,\"highest_improvement_company_code\":5.000,\"highest_improvement_pp\":17.800,\"lowest_change_company_code\":3.000,\"lowest_change_pp\":-2.030,\"average_margin_change_pp\":4.104}",
+  "quality_score": 0.0,
+  "reason": "'highest_improvement_pp': expected 17.803, got 17.8; 'lowest_change_pp': expected -2.036, got -2.03; 'average_margin_change_pp': expected 4.1, got 4.104",
+  "failure_reason": "'highest_improvement_pp': expected 17.803, got 17.8; 'lowest_change_pp': expected -2.036, got -2.03; 'average_margin_change_pp': expected 4.1, got 4.104",
+  "agent_error": null,
+  "eval_error": null
+}

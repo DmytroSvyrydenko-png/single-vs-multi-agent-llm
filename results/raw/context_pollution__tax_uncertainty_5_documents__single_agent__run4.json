@@ -1,0 +1,12 @@
+{
+  "scenario": "context_pollution",
+  "variant": "tax_uncertainty_5_documents",
+  "architecture": "single_agent",
+  "run": 4,
+  "answer": "",
+  "quality_score": 0.0,
+  "reason": "Agent response is not valid JSON: ''",
+  "failure_reason": "Agent response is not valid JSON: ''",
+  "agent_error": "Error code: 400 - {'error': {'message': 'Your input exceeds the context window of this model. Please adjust your input and try again.', 'type': 'invalid_request_error', 'param': 'input', 'code': 'context_length_exceeded'}}",
+  "eval_error": null
+}

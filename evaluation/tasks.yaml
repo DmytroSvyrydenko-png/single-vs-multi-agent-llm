@@ -1,135 +1,274 @@
 tasks:
   - scenario: context_pollution
-    variant: apple
+    variant: tax_uncertainty_3_documents
     question: >
-      You have access to Apple's 2025 10-K report.
-      Locate the information regarding unrecognized compensation cost related to outstanding RSUs.
-      Extract two specific metrics as of September 27, 2025:
-      1. The exact unrecognized compensation cost (in billions).
-      2. The weighted-average period over which it is expected to be recognized (in years).
-      Return ONLY a valid JSON with keys: "unrecognized_rsu_expense_billions", "weighted_avg_period_years".
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"unrecognized_rsu_expense_billions": 21.800, "weighted_avg_period_years": 2.500}'
+      Context-pollution level 1.
+      Use the full-document reader and inspect exactly these local full-text 10-K documents, one company at a time:
+      Adobe, Alphabet, and Amazon.
+
+      Company numeric codes for rank fields:
+      Adobe=1, Alphabet=2, Amazon=3.
+
+      For each company, find whether the latest fiscal year's income tax disclosure includes an actual ending balance
+      of gross unrecognized tax benefits, gross tax contingencies, or an equivalent total gross unrecognized tax
+      benefits amount. Use only actual ending balances from income tax disclosures. Exclude narrative-only risk
+      disclosures, proposed IRS adjustments, accrued interest and penalties, and amounts that would affect the
+      effective tax rate.
+
+      Return ONLY a valid JSON object with exact keys:
+      "document_count",
+      "matching_company_count",
+      "total_gross_unrecognized_tax_benefits_millions",
+      "largest_company_code",
+      "largest_amount_millions",
+      "smallest_company_code",
+      "smallest_amount_millions".
+
+      Monetary values must be in millions. Rank fields must use the numeric company codes above.
+      All values must be floating-point numbers with exactly 3 digits after the decimal point.
+    ground_truth: '{"document_count": 3.000, "matching_company_count": 3.000, "total_gross_unrecognized_tax_benefits_millions": 18771.000, "largest_company_code": 2.000, "largest_amount_millions": 11512.000, "smallest_company_code": 1.000, "smallest_amount_millions": 693.000}'
 
   - scenario: context_pollution
-    variant: microsoft
+    variant: tax_uncertainty_4_documents
     question: >
-      You have access to Microsoft's 10-K report for the fiscal year ended June 30, 2025.
-      Your task is to locate and extract two specific, completely isolated metrics from different sections of the document:
-      1. The exact number of registered holders of record of Microsoft's common stock as of July 24, 2025.
-      2. The exact additional tax payment amount (in billions of dollars) that the IRS is seeking
-      in the Notices of Proposed Adjustment (NOPAs) for the tax years 2004 to 2013.
-      Return ONLY a valid JSON object with the exact keys: "registered_shareholders", "irs_proposed_tax_billions".
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"registered_shareholders": 77014.000, "irs_proposed_tax_billions": 28.900}'
+      Context-pollution level 2.
+      Use the full-document reader and inspect exactly these local full-text 10-K documents, one company at a time:
+      Adobe, Alphabet, Amazon, and Apple.
+
+      Company numeric codes for rank fields:
+      Adobe=1, Alphabet=2, Amazon=3, Apple=4.
+
+      For each company, find whether the latest fiscal year's income tax disclosure includes an actual ending balance
+      of gross unrecognized tax benefits, gross tax contingencies, or an equivalent total gross unrecognized tax
+      benefits amount. Use only actual ending balances from income tax disclosures. Exclude narrative-only risk
+      disclosures, proposed IRS adjustments, accrued interest and penalties, and amounts that would affect the
+      effective tax rate.
+
+      Return ONLY a valid JSON object with exact keys:
+      "document_count",
+      "matching_company_count",
+      "total_gross_unrecognized_tax_benefits_millions",
+      "largest_company_code",
+      "largest_amount_millions",
+      "smallest_company_code",
+      "smallest_amount_millions".
+
+      Monetary values must be in millions. Rank fields must use the numeric company codes above.
+      All values must be floating-point numbers with exactly 3 digits after the decimal point.
+    ground_truth: '{"document_count": 4.000, "matching_company_count": 4.000, "total_gross_unrecognized_tax_benefits_millions": 42013.000, "largest_company_code": 4.000, "largest_amount_millions": 23242.000, "smallest_company_code": 1.000, "smallest_amount_millions": 693.000}'
 
   - scenario: context_pollution
-    variant: nvidia
+    variant: tax_uncertainty_5_documents
     question: >
-      You have access to Nvidia's 10-K report for the fiscal year ended January 25, 2026.
-      Your task is to locate and extract two highly specific metrics:
-      1. The exact charge amount (in billions of dollars) incurred in the first quarter of fiscal year 2026
-      associated with H20 excess inventory and purchase obligations due to U.S. government export requirements.
-      2. The exact maximum gross exposure (in billions of dollars) under agreements entered into in fiscal year 2026
-      to guarantee partners' facility lease obligations.
-      Return ONLY a valid JSON object with the exact keys: "h20_inventory_charge_billions", "lease_guarantee_exposure_billions".
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"h20_inventory_charge_billions": 4.500, "lease_guarantee_exposure_billions": 3.500}'
+      Context-pollution level 3.
+      Use the full-document reader and inspect exactly these local full-text 10-K documents, one company at a time:
+      Adobe, Alphabet, Amazon, Apple, and Broadcom.
 
+      Company numeric codes for rank fields:
+      Adobe=1, Alphabet=2, Amazon=3, Apple=4, Broadcom=5.
+
+      For each company, find whether the latest fiscal year's income tax disclosure includes an actual ending balance
+      of gross unrecognized tax benefits, gross tax contingencies, or an equivalent total gross unrecognized tax
+      benefits amount. Use only actual ending balances from income tax disclosures. Exclude narrative-only risk
+      disclosures, proposed IRS adjustments, accrued interest and penalties, and amounts that would affect the
+      effective tax rate.
+
+      Return ONLY a valid JSON object with exact keys:
+      "document_count",
+      "matching_company_count",
+      "total_gross_unrecognized_tax_benefits_millions",
+      "largest_company_code",
+      "largest_amount_millions",
+      "smallest_company_code",
+      "smallest_amount_millions".
+
+      Monetary values must be in millions. Rank fields must use the numeric company codes above.
+      All values must be floating-point numbers with exactly 3 digits after the decimal point.
+    ground_truth: '{"document_count": 5.000, "matching_company_count": 5.000, "total_gross_unrecognized_tax_benefits_millions": 45187.000, "largest_company_code": 4.000, "largest_amount_millions": 23242.000, "smallest_company_code": 1.000, "smallest_amount_millions": 693.000}'
 
 
   - scenario: parallelization
-    variant: data_center
-    companies: [AMD, Intel, Nvidia]
-    question: >
-      You have access to the 2025/2026 financial reports for AMD, Intel, and Nvidia.
-      Find the exact revenue for their data center / compute segments for their latest reported fiscal year.
-      Specifically, extract:
-      1. AMD's "Data Center" net revenue for 2025.
-      2. Intel's "DCAI" (Data Center and AI) revenue for 2025.
-      3. Nvidia's "Compute & Networking" revenue for the fiscal year ended January 25, 2026.
-      Return your response ONLY as a valid JSON object with the exact keys: "AMD_Data_Center", "Intel_DCAI", "Nvidia_Compute_Networking".
-      Report all figures in millions.
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"AMD_Data_Center": 16635.000, "Intel_DCAI": 16919.000, "Nvidia_Compute_Networking": 193479.000}'
-
-  - scenario: parallelization
-    variant: rnd
+    variant: margin_change_3_companies
     companies: [Apple, Microsoft, Nvidia]
     question: >
-      You have access to the financial reports for Apple, Microsoft, and Nvidia.
-      Find the exact Research and Development (R&D) expenses for their latest reported fiscal year.
-      Specifically, extract:
-      1. Apple's "Research and development" expense for the fiscal year ended September 27, 2025.
-      2. Microsoft's "Research and development" expense for the fiscal year ended June 30, 2025.
-      3. Nvidia's "Research and development" expense for the fiscal year ended January 25, 2026.
-      Return your response ONLY as a valid JSON object with the exact keys: "Apple_RnD", "Microsoft_RnD", "Nvidia_RnD".
-      Report all figures in millions.
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"Apple_RnD": 34550.000, "Microsoft_RnD": 32488.000, "Nvidia_RnD": 18497.000}'
+      Parallelization level 1.
+      You have access to the latest 10-K reports for exactly 3 companies:
+      Apple, Microsoft, and Nvidia.
+
+      Company numeric codes:
+      Apple=1, Microsoft=2, Nvidia=3.
+
+      For every company, independently extract revenue and operating income for the latest fiscal year and the
+      immediately prior fiscal year. Calculate operating margin for both years:
+      operating margin = operating income / revenue * 100.
+      Then calculate operating margin change in percentage points:
+      latest-year operating margin minus prior-year operating margin.
+
+      Return ONLY a valid JSON object with exact keys:
+      "company_count",
+      "highest_improvement_company_code",
+      "highest_improvement_pp",
+      "lowest_change_company_code",
+      "lowest_change_pp",
+      "average_margin_change_pp".
+
+      Percentage-point values must be signed percentage points, not relative percent growth.
+      All values must be floating-point numbers rounded to exactly 3 digits after the decimal point.
+    ground_truth: '{"company_count": 3.000, "highest_improvement_company_code": 2.000, "highest_improvement_pp": 0.978, "lowest_change_company_code": 3.000, "lowest_change_pp": -2.036, "average_margin_change_pp": -0.199}'
 
   - scenario: parallelization
-    variant: total_revenue
-    companies: [Apple, Microsoft, AMD]
+    variant: margin_change_5_companies
+    companies: [Apple, Microsoft, Nvidia, AMD, Intel]
     question: >
-      You have access to the financial reports for Apple, Microsoft, and AMD.
-      Find the exact total top-line revenue for their latest reported fiscal year.
-      Specifically, extract:
-      1. Apple's "Total net sales" for the fiscal year 2025.
-      2. Microsoft's "Total revenue" for the fiscal year 2025.
-      3. AMD's "Total net revenue" for the fiscal year 2025.
-      Return your response ONLY as a valid JSON object with the exact keys: "Apple_Total_Sales", "Microsoft_Total_Revenue", "AMD_Total_Revenue".
-      Report all figures in millions.
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"Apple_Total_Sales": 416161.000, "Microsoft_Total_Revenue": 281724.000, "AMD_Total_Revenue": 34639.000}'
+      Parallelization level 2.
+      You have access to the latest 10-K reports for exactly 5 companies:
+      Apple, Microsoft, Nvidia, AMD, and Intel.
 
+      Company numeric codes:
+      Apple=1, Microsoft=2, Nvidia=3, AMD=4, Intel=5.
+
+      For every company, independently extract revenue and operating income or operating income/loss for the latest
+      fiscal year and the immediately prior fiscal year. Calculate operating margin for both years:
+      operating margin = operating income / revenue * 100.
+      Then calculate operating margin change in percentage points:
+      latest-year operating margin minus prior-year operating margin.
+
+      Return ONLY a valid JSON object with exact keys:
+      "company_count",
+      "highest_improvement_company_code",
+      "highest_improvement_pp",
+      "lowest_change_company_code",
+      "lowest_change_pp",
+      "average_margin_change_pp".
+
+      Percentage-point values must be signed percentage points, not relative percent growth.
+      All values must be floating-point numbers rounded to exactly 3 digits after the decimal point.
+    ground_truth: '{"company_count": 5.000, "highest_improvement_company_code": 5.000, "highest_improvement_pp": 17.803, "lowest_change_company_code": 3.000, "lowest_change_pp": -2.036, "average_margin_change_pp": 4.100}'
+
+  - scenario: parallelization
+    variant: margin_change_7_companies
+    companies: [Adobe, AMD, Apple, Broadcom, Intel, Microsoft, Nvidia]
+    question: >
+      Parallelization level 3.
+      You have access to the latest 10-K reports for exactly 7 companies:
+      Adobe, AMD, Apple, Broadcom, Intel, Microsoft, and Nvidia.
+
+      Company numeric codes:
+      Adobe=1, AMD=2, Apple=3, Broadcom=4, Intel=5, Microsoft=6, Nvidia=7.
+
+      For every company, independently extract revenue and operating income or operating income/loss for the latest
+      fiscal year and the immediately prior fiscal year. Calculate operating margin for both years:
+      operating margin = operating income / revenue * 100.
+      Then calculate operating margin change in percentage points:
+      latest-year operating margin minus prior-year operating margin.
+
+      Return ONLY a valid JSON object with exact keys:
+      "company_count",
+      "highest_improvement_company_code",
+      "highest_improvement_pp",
+      "lowest_change_company_code",
+      "lowest_change_pp",
+      "average_margin_change_pp".
+
+      Percentage-point values must be signed percentage points, not relative percent growth.
+      All values must be floating-point numbers rounded to exactly 3 digits after the decimal point.
+    ground_truth: '{"company_count": 7.000, "highest_improvement_company_code": 5.000, "highest_improvement_pp": 17.803, "lowest_change_company_code": 7.000, "lowest_change_pp": -2.036, "average_margin_change_pp": 5.652}'
 
 
   - scenario: verification
-    variant: apple_tax
+    variant: verification_level_1_nvidia_single_adjustment
     question: >
-      You have access to Apple's 10-K report.
-      Create a strict JSON breakdown of Apple's Provision for Income Taxes for the fiscal year 2024.
-      Extract exactly three specific values from the income tax provision table:
-      1. Current Federal tax
-      2. Deferred Federal tax
-      3. Current Foreign tax
-      All figures must be exactly as reported in the 2024 column in millions.
-      Return ONLY a valid JSON with keys: "current_federal_tax_2024", "deferred_federal_tax_2024", "current_foreign_tax_2024".
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"current_federal_tax_2024": 5571.000, "deferred_federal_tax_2024": -3080.000, "current_foreign_tax_2024": 25483.000}'
+      Verification level 1: single add-back adjustment.
+      Use local document search/window tools to verify Nvidia's 2026 10-K evidence.
+      Internally track extracted raw values and formulas, but return only the final JSON.
+
+      A junior analyst produced this draft JSON:
+      {"nvidia_revenue_2026_millions": 215938.000, "nvidia_operating_income_2026_millions": 130387.000,
+      "nvidia_h20_charge_millions": 4500.000, "nvidia_adjusted_operating_income_millions": 125887.000,
+      "nvidia_reported_operating_margin_pct": 60.382, "nvidia_adjusted_operating_margin_pct": 58.295,
+      "nvidia_h20_adjustment_pp": -2.087}
+
+      Verify the draft against the 10-K and correct it if needed.
+      The H20 charge was an operating charge. For the adjusted operating margin, add back the H20 charge to reported
+      operating income, then divide by revenue:
+      adjusted operating margin = (reported operating income + H20 charge) / revenue * 100.
+      Adjustment in percentage points = adjusted operating margin minus reported operating margin.
+
+      Return ONLY a valid JSON object with exact keys:
+      "nvidia_revenue_2026_millions", "nvidia_operating_income_2026_millions",
+      "nvidia_h20_charge_millions", "nvidia_adjusted_operating_income_millions",
+      "nvidia_reported_operating_margin_pct", "nvidia_adjusted_operating_margin_pct",
+      "nvidia_h20_adjustment_pp".
+
+      Monetary values must be in millions. Percent and percentage-point values must be rounded to exactly 3 digits
+      after the decimal point.
+    ground_truth: '{"nvidia_revenue_2026_millions": 215938.000, "nvidia_operating_income_2026_millions": 130387.000, "nvidia_h20_charge_millions": 4500.000, "nvidia_adjusted_operating_income_millions": 134887.000, "nvidia_reported_operating_margin_pct": 60.382, "nvidia_adjusted_operating_margin_pct": 62.466, "nvidia_h20_adjustment_pp": 2.084}'
 
   - scenario: verification
-    variant: intel_litigation
+    variant: verification_level_2_intel_sign_trap
     question: >
-      You have access to Intel's 10-K report.
-      Locate the table detailing "Restructuring and other charges".
-      Extract the exact figures for the "Litigation charges and other" category
-      for the years ended Dec 27, 2025, and Dec 30, 2023.
-      All figures must be exactly as reported in millions.
-      Return ONLY a valid JSON with keys: "litigation_charges_2025", "litigation_charges_2023".
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"litigation_charges_2025": -121.000, "litigation_charges_2023": -329.000}'
+      Verification level 2: negative operating income and add-back sign trap.
+      Use local document search/window tools to verify Intel's 2025 10-K evidence.
+      Internally track extracted raw values and formulas, but return only the final JSON.
+
+      A junior analyst produced this draft JSON:
+      {"intel_revenue_2025_millions": 52853.000, "intel_operating_income_2025_millions": -2214.000,
+      "intel_total_restructuring_charges_2025_millions": 2191.000,
+      "intel_adjusted_operating_income_2025_millions": -4405.000,
+      "intel_reported_operating_margin_2025_pct": -4.189,
+      "intel_adjusted_operating_margin_2025_pct": -8.335,
+      "intel_restructuring_adjustment_pp": -4.146}
+
+      Verify the draft against the 10-K and correct it if needed.
+      The restructuring and other charges were operating charges. For the adjusted operating margin, add back total
+      restructuring and other charges to reported operating income/loss:
+      adjusted operating income = reported operating income/loss + total restructuring and other charges.
+      adjusted operating margin = adjusted operating income / revenue * 100.
+      Adjustment in percentage points = adjusted operating margin minus reported operating margin.
+
+      Return ONLY a valid JSON object with exact keys:
+      "intel_revenue_2025_millions", "intel_operating_income_2025_millions",
+      "intel_total_restructuring_charges_2025_millions",
+      "intel_adjusted_operating_income_2025_millions",
+      "intel_reported_operating_margin_2025_pct",
+      "intel_adjusted_operating_margin_2025_pct",
+      "intel_restructuring_adjustment_pp".
+
+      Monetary values must be in millions and preserve negative signs.
+      Percent and percentage-point values must be rounded to exactly 3 digits after the decimal point.
+    ground_truth: '{"intel_revenue_2025_millions": 52853.000, "intel_operating_income_2025_millions": -2214.000, "intel_total_restructuring_charges_2025_millions": 2191.000, "intel_adjusted_operating_income_2025_millions": -23.000, "intel_reported_operating_margin_2025_pct": -4.189, "intel_adjusted_operating_margin_2025_pct": -0.044, "intel_restructuring_adjustment_pp": 4.145}'
 
   - scenario: verification
-    variant: microsoft_income
+    variant: verification_level_3_apple_tax_reconciliation
     question: >
-      You have access to Microsoft's 10-K report.
-      Locate the table detailing the components of "other income (expense), net".
-      Extract exactly three values for the Year Ended June 30, 2025:
-      1. Interest expense
-      2. Net recognized losses on investments
-      3. Net gains (losses) on foreign currency remeasurements
-      All figures must be exactly as reported in millions.
-      Return ONLY a valid JSON with keys: "interest_expense_2025", "net_losses_investments_2025", "net_gains_foreign_currency_2025".
-      All values must be floating-point numbers representing plain decimal numbers with exactly 3 digits after the decimal point, using a period as separator.
-      Do not include currency symbols, commas, or units (e.g., 1.111, 1111.000, -11.000).
-    ground_truth: '{"interest_expense_2025": -2385.000, "net_losses_investments_2025": -349.000, "net_gains_foreign_currency_2025": 171.000}'
+      Verification level 3: net income growth reconciliation with tax-effect adjustment.
+      Use local document search/window tools to verify Apple's 2025 10-K evidence.
+      Internally track extracted raw values and formulas, but return only the final JSON.
+
+      A junior analyst produced this draft JSON:
+      {"apple_net_income_2025_millions": 112010.000, "apple_net_income_2024_millions": 93736.000,
+      "apple_state_aid_tax_effect_millions": 10700.000,
+      "apple_reported_net_income_growth_pct": 19.495,
+      "apple_adjusted_net_income_2025_millions": 122710.000,
+      "apple_adjusted_net_income_growth_pct": 30.905,
+      "apple_growth_effect_removed_pp": -11.410}
+
+      Verify the draft against the 10-K and correct it if needed.
+      Apple disclosed that its 2025 effective tax rate was lower compared with 2024 due to a $10.7 billion
+      year-over-year decrease in provision for income taxes related to the State Aid Decision. To estimate net income
+      growth excluding that favorable year-over-year tax effect, subtract 10.7 billion from 2025 net income, then
+      calculate growth against 2024 net income:
+      adjusted growth = (adjusted 2025 net income - 2024 net income) / 2024 net income * 100.
+      Growth effect removed in percentage points = reported net income growth minus adjusted net income growth.
+
+      Return ONLY a valid JSON object with exact keys:
+      "apple_net_income_2025_millions", "apple_net_income_2024_millions",
+      "apple_state_aid_tax_effect_millions",
+      "apple_reported_net_income_growth_pct",
+      "apple_adjusted_net_income_2025_millions",
+      "apple_adjusted_net_income_growth_pct",
+      "apple_growth_effect_removed_pp".
+
+      Monetary values must be in millions. Percent and percentage-point values must be rounded to exactly 3 digits
+      after the decimal point.
+    ground_truth: '{"apple_net_income_2025_millions": 112010.000, "apple_net_income_2024_millions": 93736.000, "apple_state_aid_tax_effect_millions": 10700.000, "apple_reported_net_income_growth_pct": 19.495, "apple_adjusted_net_income_2025_millions": 101310.000, "apple_adjusted_net_income_growth_pct": 8.080, "apple_growth_effect_removed_pp": 11.415}'

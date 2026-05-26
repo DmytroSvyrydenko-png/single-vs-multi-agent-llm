@@ -8,6 +8,7 @@ class EvalResult:
     architecture: str
     quality_score: float  # 0.0 or 1.0
     reason: str
+    failure_reason: str | None = None
     error: str | None = None
 
 
@@ -27,14 +28,18 @@ def evaluate(
     try:
         ground_truth = json.loads(reference_answer)
     except Exception as e:
+        failure_reason = f"Failed to parse ground truth: {e}"
         return EvalResult(scenario=scenario, architecture=architecture,
-                          quality_score=0.0, reason="", error=f"Failed to parse ground truth: {e}")
+                          quality_score=0.0, reason=failure_reason,
+                          failure_reason=failure_reason, error=failure_reason)
 
     try:
         agent_json = json.loads(agent_answer)
     except Exception:
+        failure_reason = f"Agent response is not valid JSON: {agent_answer!r}"
         return EvalResult(scenario=scenario, architecture=architecture,
-                          quality_score=0.0, reason=f"Agent response is not valid JSON: {agent_answer!r}")
+                          quality_score=0.0, reason=failure_reason,
+                          failure_reason=failure_reason)
 
     mismatches = []
     for key, expected in ground_truth.items():
@@ -51,8 +56,10 @@ def evaluate(
             mismatches.append(f"'{key}': expected {expected_val}, got {agent_val}")
 
     if mismatches:
+        failure_reason = "; ".join(mismatches)
         return EvalResult(scenario=scenario, architecture=architecture,
-                          quality_score=0.0, reason="; ".join(mismatches))
+                          quality_score=0.0, reason=failure_reason,
+                          failure_reason=failure_reason)
 
     return EvalResult(scenario=scenario, architecture=architecture,
                       quality_score=1.0, reason="All values match")
