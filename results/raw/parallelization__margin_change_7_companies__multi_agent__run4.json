@@ -1,0 +1,12 @@
+{
+  "scenario": "parallelization",
+  "variant": "margin_change_7_companies",
+  "architecture": "multi_agent",
+  "run": 4,
+  "answer": "{\"company_count\":7.000,\"highest_improvement_company_code\":2.000,\"highest_improvement_pp\":17.803,\"lowest_change_company_code\":7.000,\"lowest_change_pp\":-2.036,\"average_margin_change_pp\":5.652}",
+  "quality_score": 0.0,
+  "reason": "'highest_improvement_company_code': expected 5.0, got 2.0",
+  "failure_reason": "'highest_improvement_company_code': expected 5.0, got 2.0",
+  "agent_error": null,
+  "eval_error": null
+}

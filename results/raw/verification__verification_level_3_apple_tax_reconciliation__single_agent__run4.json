@@ -1,0 +1,12 @@
+{
+  "scenario": "verification",
+  "variant": "verification_level_3_apple_tax_reconciliation",
+  "architecture": "single_agent",
+  "run": 4,
+  "answer": "{\"apple_net_income_2025_millions\":112010.000,\"apple_net_income_2024_millions\":93736.000,\"apple_state_aid_tax_effect_millions\":10700.000,\"apple_reported_net_income_growth_pct\":19.495,\"apple_adjusted_net_income_2025_millions\":101310.000,\"apple_adjusted_net_income_growth_pct\":8.080,\"apple_growth_effect_removed_pp\":11.415}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "failure_reason": null,
+  "agent_error": null,
+  "eval_error": null
+}

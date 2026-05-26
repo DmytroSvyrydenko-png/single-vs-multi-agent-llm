@@ -27,7 +27,7 @@ SCENARIO_CONTEXT_POLLUTION = "context_pollution"
 SCENARIO_PARALLELIZATION = "parallelization"
 SCENARIO_VERIFICATION = "verification"
 
-N_RUNS = 1
+N_RUNS = 5
 
 RESULTS_DIR = ROOT_DIR / "results"
 RAW_RESULTS_DIR = RESULTS_DIR / "raw"

@@ -1,0 +1,12 @@
+{
+  "scenario": "verification",
+  "variant": "verification_level_1_nvidia_single_adjustment",
+  "architecture": "single_agent",
+  "run": 5,
+  "answer": "{\"nvidia_revenue_2026_millions\":215938,\"nvidia_operating_income_2026_millions\":130387,\"nvidia_h20_charge_millions\":4500,\"nvidia_adjusted_operating_income_millions\":134887,\"nvidia_reported_operating_margin_pct\":60.382,\"nvidia_adjusted_operating_margin_pct\":62.466,\"nvidia_h20_adjustment_pp\":2.084}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "failure_reason": null,
+  "agent_error": null,
+  "eval_error": null
+}

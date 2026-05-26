@@ -1,0 +1,12 @@
+{
+  "scenario": "parallelization",
+  "variant": "margin_change_3_companies",
+  "architecture": "multi_agent",
+  "run": 2,
+  "answer": "{\"company_count\":3.000,\"highest_improvement_company_code\":2.000,\"highest_improvement_pp\":0.978,\"lowest_change_company_code\":3.000,\"lowest_change_pp\":-2.036,\"average_margin_change_pp\":-0.199}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "failure_reason": null,
+  "agent_error": null,
+  "eval_error": null
+}

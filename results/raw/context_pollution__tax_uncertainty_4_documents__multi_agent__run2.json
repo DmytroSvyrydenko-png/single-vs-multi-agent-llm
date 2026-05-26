@@ -1,0 +1,12 @@
+{
+  "scenario": "context_pollution",
+  "variant": "tax_uncertainty_4_documents",
+  "architecture": "multi_agent",
+  "run": 2,
+  "answer": "{\"document_count\":4.000,\"matching_company_count\":4.000,\"total_gross_unrecognized_tax_benefits_millions\":42013.000,\"largest_company_code\":4.000,\"largest_amount_millions\":23242.000,\"smallest_company_code\":1.000,\"smallest_amount_millions\":693.000}",
+  "quality_score": 1.0,
+  "reason": "All values match",
+  "failure_reason": null,
+  "agent_error": null,
+  "eval_error": null
+}
